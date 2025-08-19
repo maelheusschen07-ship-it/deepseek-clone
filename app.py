@@ -6,8 +6,10 @@ from openai import OpenAI
 client = OpenAI(api_key=st.secrets["OPENAI_API_KEY"])
 
 # Interface Streamlit
-st.title("🤖 Mon IA Stylée")
-user_input = st.text_input("Pose ta question :")
+import streamlit as st
+
+st.title("👻 Ghost.AI")  # 👈 Change ici le nom
+st.markdown("*L'IA mystérieuse qui lit entre les lignes...*")  # Sous-titre optionnel
 
 if user_input:
     # Appel à l'API OpenAI
