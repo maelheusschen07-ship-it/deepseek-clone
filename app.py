@@ -1,20 +1,27 @@
 import streamlit as st
 import openai
 
-# Titre de l'application
 st.title("Mini DeepSeek Clone")
 
-# Récupération de la clé API depuis les secrets Streamlit
-openai.api_key = st.secrets["OPENAI_API_KEY"]
+# L'utilisateur entre sa clé API
+user_api_key = st.text_input("🔑 Enter your OpenAI API Key", type="password")
 
-# Champ de texte pour poser une question
-user_input = st.text_input("Pose ta question :")
+# Champ pour poser une question
+user_input = st.text_input("💬 Pose ta question :")
 
-# Quand l'utilisateur clique sur le bouton
+# Bouton pour envoyer la question
 if st.button("Envoyer") and user_input:
-    response = openai.ChatCompletion.create(
-        model="gpt-3.5-turbo",
-        messages=[{"role": "user", "content": user_input}],
-        max_tokens=150
-    )
-    st.write(response['choices'][0]['message']['content'])
+    if not user_api_key:
+        st.error("⚠️ Please enter your OpenAI API Key above.")
+    else:
+        openai.api_key = user_api_key
+        try:
+            response = openai.ChatCompletion.create(
+                model="gpt-3.5-turbo",
+                messages=[{"role": "user", "content": user_input}],
+                max_tokens=150
+            )
+            st.write(response['choices'][0]['message']['content'])
+        except Exception as e:
+            st.error(f"❌ Error: {str(e)}")
+
