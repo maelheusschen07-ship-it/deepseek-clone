@@ -12,13 +12,17 @@ st.title("👻 Ghost.AI")  # 👈 Change ici le nom
 st.markdown("*L'IA mystérieuse qui lit entre les lignes...*")  # Sous-titre optionnel
 
 if user_input:
-    # Appel à l'API OpenAI
-    response = client.chat.completions.create(
-        model="gpt-3.5-turbo",
-        messages=[{"role": "user", "content": user_input}]
-    )
+    response = client.chat.completions.create(...)
+    st.write(f"**Ghost.AI** : {response.choices[0].message.content}")  # 👈 Ajoute le nom ici
     
-    # Affichage de la réponse
-    st.write("Réponse de l'IA :")
-    st.write(response.choices[0].message.content)
+   response = client.chat.completions.create(
+    model="gpt-3.5-turbo",
+    messages=[
+        {
+            "role": "system", 
+            "content": "Tu es Ghost.AI, une intelligence fantomatique. Tes réponses sont mystérieuses, concises et parfois énigmatiques. Signe toujours tes réponses par '👻'."
+        },
+        {"role": "user", "content": user_input}
+    ]
+)
 
