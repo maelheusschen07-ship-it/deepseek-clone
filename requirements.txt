@@ -1,2 +1,14 @@
-openai>=1.0.0
-streamlit
+# Core
+streamlit>=1.32.0  # Version stable avec nouvelles fonctionnalités
+openai>=1.12.0     # Dernière version stable de l'API
+
+# Utilitaires
+python-dotenv>=1.0.0  # Pour la gestion des variables d'environnement
+pyyaml>=6.0          # Pour d'éventuelles configs avancées
+
+# Optimisation
+tqdm>=4.66.0         # Pour les barres de progression (utile en dev)
+loguru>=0.7.2        # Logging stylisé
+
+# Sécurité
+uvicorn>=0.27.0      # Pour un éventuel déploiement ASGI
